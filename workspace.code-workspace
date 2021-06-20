@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"path": "../PHP01"
+		},
+		{
+			"path": "../kadai"
+		},
+		{
+			"path": "../kadai_botsu"
+		},
+		{
+			"path": "../../../../Users/nishimuraseiakatsuki/Desktop/PHP_kadai"
+		},
+		{
+			"path": "../php02"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "PHP01"
+	}
+}

@@ -1,0 +1,5 @@
+.index_header{
+    height: 100%;/*your_containerに対して100%になる */
+    width: 100%;/*your_containerに対して100%になる */
+    background-color: rgb(87, 203, 211); 
+}
