@@ -12,8 +12,8 @@ $user_name = $_SESSION['name'];
 try {
   //Password:MAMP='root',XAMPP=''
   $pdo = 
-        new PDO('mysql:dbname=brownturtle3_22_nishimura;charset=utf8;host=mysql57.brownturtle3.sakura.ne.jp','brownturtle3','05kawahara_22nishimura');
-        // new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
+        // new PDO('mysql:dbname=brownturtle3_22_nishimura;charset=utf8;host=mysql57.brownturtle3.sakura.ne.jp','brownturtle3','05kawahara_22nishimura');
+        new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
 } catch (PDOException $e) {
   exit('DBConnectError:'.$e->getMessage());
 }
