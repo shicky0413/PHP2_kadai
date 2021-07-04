@@ -1,20 +1,11 @@
 <?php
-//SESSIONスタート
-session_start();
-
 //funcs.phpを読み込む
 require_once('funcs_kadai.php');
-
-//ログインチェック
-loginCheck('funcs_kadai.php');
-$user_name = $_SESSION['name'];
-
-//以下ログインユーザーのみ
 //1.  DB接続します
 try {
   //Password:MAMP='root',XAMPP=''
   $pdo = 
-         new PDO('mysql:dbname=brownturtle3_22_nishimura;charset=utf8;host=mysql57.brownturtle3.sakura.ne.jp','brownturtle3','05kawahara_22nishimura');
+        new PDO('mysql:dbname=brownturtle3_22_nishimura;charset=utf8;host=mysql57.brownturtle3.sakura.ne.jp','brownturtle3','05kawahara_22nishimura');
         //  new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
 } catch (PDOException $e) {
   exit('DBConnectError:'.$e->getMessage());
@@ -42,9 +33,6 @@ if($status==false) {
     $view .= h($result['indate']);
     // $view .= h($result['indate']).':'.h($result['realestate_name']).':'.h($result['price']).':'.h($result['space']).':'.h($result['room_type']).':'.h($result['comment']);
     $view .= "</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p>";
-    $view .= h($result['id']);
-    $view .= "</p>";//.=で変数を上書き
     $view .= "<p class=realestate_name>";
     $view .= h($result['realestate_name']);
     $view .= "</p>";//.=で変数を上書きではなく足していくことができる
@@ -91,14 +79,8 @@ if($status==false) {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="menu.php">■トップページ</a>
+      <a class="navbar-brand" href="index_simple.php">■案件登録画面の表示</a>
       <br>
-      <a class="navbar-brand" href="index_kadai.php">■案件登録画面の表示</a>
-      <br>
-      <a class="navbar-brand" href="chart_kadai.php">■物件単価比較表</a>
-      <br>
-      <p class="navbar-brand"><?= $user_name ?></p>
-      </div>
       </div>
     </div>
   </nav>

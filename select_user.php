@@ -1,27 +1,25 @@
 <?php
-//SESSIONスタート
 session_start();
 
 //funcs.phpを読み込む
 require_once('funcs_kadai.php');
 
-//ログインチェック
-loginCheck('funcs_kadai.php');
+loginCheck('funcs_user.php');//user?
 $user_name = $_SESSION['name'];
-
 //以下ログインユーザーのみ
+
 //1.  DB接続します
 try {
   //Password:MAMP='root',XAMPP=''
   $pdo = 
-         new PDO('mysql:dbname=brownturtle3_22_nishimura;charset=utf8;host=mysql57.brownturtle3.sakura.ne.jp','brownturtle3','05kawahara_22nishimura');
-        //  new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
+        new PDO('mysql:dbname=brownturtle3_22_nishimura;charset=utf8;host=mysql57.brownturtle3.sakura.ne.jp','brownturtle3','05kawahara_22nishimura');
+        // new PDO('mysql:dbname=gs_db;charset=utf8;host=localhost','root','root');
 } catch (PDOException $e) {
   exit('DBConnectError:'.$e->getMessage());
 }
 
 //２．SQL文を用意(データ取得：SELECT)
-$stmt = $pdo->prepare("SELECT * FROM gs_bm_table");//ここの書き方で取れるデータ、表示データが変わる。
+$stmt = $pdo->prepare("SELECT * FROM gs_user_table");//ここの書き方で取れるデータ、表示データが変わる。
 
 //3. 実行
 $status = $stmt->execute();
@@ -37,34 +35,28 @@ if($status==false) {
   //Selectデータの数だけ自動でループしてくれる
   //FETCH_ASSOC=http://php.net/manual/ja/pdostatement.fetch.php
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){ 
-    $view .= '<a href="detail_kadai.php?id=' . $result['id'] . '">';
+    $view .= '<a href="detail_user.php?id=' . $result['id'] . '">';
     $view .= "<p class=indate>";
     $view .= h($result['indate']);
     // $view .= h($result['indate']).':'.h($result['realestate_name']).':'.h($result['price']).':'.h($result['space']).':'.h($result['room_type']).':'.h($result['comment']);
     $view .= "</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p>";
-    $view .= h($result['id']);
-    $view .= "</p>";//.=で変数を上書き
-    $view .= "<p class=realestate_name>";
-    $view .= h($result['realestate_name']);
+    $view .= "<p class=name>";
+    $view .= h($result['name']);
     $view .= "</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p class=price>";
-    $view .= h($result['price']);
-    $view .= "万円</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p class=space>";
-    $view .= h($result['space']);
-    $view .= "㎡</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p class=unit_price>";
-    $view .= h($result['unit_price']);
-    $view .= "万円/㎡</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p class=room_type>";
-    $view .= h($result['room_type']);
+    $view .= "<p class=lid>";
+    $view .= h($result['lid']);
     $view .= "</p>";//.=で変数を上書きではなく足していくことができる
-    $view .= "<p class=comment>";
-    $view .= h($result['comment']);
+    $view .= "<p class=lpw>";
+    $view .= h($result['lpw']);
+    $view .= "</p>";//.=で変数を上書きではなく足していくことができる
+    $view .= "<p class=kanri_flg>";
+    $view .= h($result['kanri_flg']);
+    $view .= "</p>";//.=で変数を上書きではなく足していくことができる
+    $view .= "<p class=life_flg>";
+    $view .= h($result['life_flg']);
     $view .= "</p>";//.=で変数を上書きではなく足していくことができる
     $view .= '</a>';
-    $view .= '<a href="delete_kadai.php?id='.$result["id"].'">';
+    $view .= '<a href="delete_user.php?id='.$result["id"].'">';
     $view .= ' [ 削除 ]';
     $view .= '</a>';
   }
@@ -79,7 +71,7 @@ if($status==false) {
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <div id="your_container">
-<title>案件パイプラインリスト</title>
+<title>■User一覧画面</title>
 <link rel="stylesheet" href="css/range.css">
 <!-- <link href="css/bootstrap.min.css" rel="stylesheet"> -->
 <link href="css/kadai.css" rel="stylesheet">
@@ -91,14 +83,10 @@ if($status==false) {
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="menu.php">■トップページ</a>
-      <br>
-      <a class="navbar-brand" href="index_kadai.php">■案件登録画面の表示</a>
-      <br>
-      <a class="navbar-brand" href="chart_kadai.php">■物件単価比較表</a>
-      <br>
+
+      <div class="navbar-header"><a class="navbar-brand" href="menu.php">■トップページ</a></div>
+      <a class="navbar-brand" href="index_user.php">■User登録画面の表示</a>
       <p class="navbar-brand"><?= $user_name ?></p>
-      </div>
       </div>
     </div>
   </nav>
@@ -107,7 +95,7 @@ if($status==false) {
 
 <!-- Main[Start] -->
 <div>
-  パイプラインリスト
+  User一覧
     <div class="container_jumbotron"><?= $view ?></div>
 </div>
 <!-- Main[End] -->

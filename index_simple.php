@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+<link href="css/kadai.css" rel="stylesheet">
 <head>
   <meta charset="UTF-8">
   <title>案件登録</title>
@@ -12,10 +13,9 @@
 <header class=index_header>
   <nav class="navbar_navbar-default">
     <div class="container-fluid">
-    <div class="navbar-header"><a class="navbar-brand" href="select_kadai.php">案件パイプラインの表示</a></div>
-    <div class="navbar-header"><a class="navbar-brand" href="menu.php">トップページ</a></div>
-    <div class="navbar-header"><a class="navbar-brand" href="login.php">ログイン</a></div>
-    <div class="navbar-header"><a class="navbar-brand" href="logout.php">ログアウト</a></div>
+    <div class="navbar-header"><a class="navbar-brand" href="select_simle.php">■案件パイプラインの表示</a>
+    <div class="navbar-header"><a class="navbar-brand" href="menu.php">■メニューの表示</a>
+    </div>
     </div>
   </nav>
 </header>
